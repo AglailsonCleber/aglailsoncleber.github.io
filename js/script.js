@@ -1,25 +1,22 @@
-// async function init() {
-//     try {
-//         const response = await fetch('../api_key/api_key.json');
-//         const data = await response.json();
-//         const githubApiKey = data.api_key.find(element => element.api === 'GITHUB');
+async function init() {
+    try {
+        const response = await fetch('../api_key/api_key.json');
+        const data = await response.json();
+        const githubApiKey = data.api_key.find(element => element.api === 'GITHUB');
 
-//         if (githubApiKey) {
-//             renderProjects(githubApiKey.key_value, githubApiKey.user);
-//         } else {
-//             console.error('Chave da API do GITHUB não encontrada nos dados JSON.');
-//         }
+        if (githubApiKey) {
+            renderProjects(githubApiKey.key_value, githubApiKey.user);
+        } else {
+            console.error('Chave da API do GITHUB não encontrada nos dados JSON.');
+        }
 
-//     } catch (error) {
-//         console.error('Erro:', error);
-//     }
-// }
+    } catch (error) {
+        console.error('Erro:', error);
+    }
+}
 
 
-function renderProjects() {
-
-    const username = ${{ secrets.user }};
-    const token = ${{ secrets.api_key }};
+function renderProjects(token, username) {
 
     fetch(`https://api.github.com/users/${username}/repos`, {
         headers: {
@@ -97,5 +94,4 @@ menuLinks.forEach((link) => {
     });
 });
 
-// window.addEventListener('load', init);
-window.addEventListener('load', renderProjects);
+window.addEventListener('load', init);
