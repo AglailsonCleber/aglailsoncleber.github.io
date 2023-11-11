@@ -1,6 +1,6 @@
 function renderProjects( ) {
-    const username = '<<secrets.USER>>';
-    const token = '<<secrets.APIKEY>>';
+    const username = `<<USER>>`;
+    const token = `<<APIKEY>>`;
     fetch(`https://api.github.com/users/${username}/repos`, {
         headers: {
             Authorization: `token ${token}`,
